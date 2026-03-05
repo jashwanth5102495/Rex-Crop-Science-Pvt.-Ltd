@@ -73,7 +73,7 @@ export default function App() {
               playsInline 
             />
           </div>
-        <div className="mt-2 text-xs sm:text-sm text-black font-semibold tracking-wide">Bio‑Stimulant Registration Details</div>
+        <div className="mt-2 text-xs sm:text-sm text-white font-semibold tracking-wide">Bio‑Stimulant Registration Details</div>
       </header>
 
       {/* Main panel */}
