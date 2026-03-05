@@ -5,25 +5,25 @@ import { PRODUCTS, findProductBySlug } from './productsData.js';
 
 export default function App() {
   const [showIntro, setShowIntro] = useState(true);
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState(PRODUCTS[0]);
 
   useEffect(() => {
-    const DEFAULT_ALIAS = 'Kalpamas';
-    const DEFAULT_ALIASES = new Set(['Kalpamas', 'Kalpam', 'KALPAM', 'kalpam']);
+    const DEFAULT_ALIAS = 'HUMIZO';
     const current = window.location.pathname || '/';
     const rawPath = current.replace(/^\//, '');
     const effectivePath = rawPath || DEFAULT_ALIAS;
     const found = findProductBySlug(effectivePath);
     setProduct(found);
+    
     let desiredSlug = current;
     if (!rawPath) {
-      desiredSlug = `/${DEFAULT_ALIAS}`;
-    } else if (DEFAULT_ALIASES.has(rawPath)) {
-      desiredSlug = `/${DEFAULT_ALIAS}`;
+      desiredSlug = `/${encodeURIComponent(DEFAULT_ALIAS)}`;
     } else {
+      // Always redirect to canonical brand name
       desiredSlug = `/${encodeURIComponent(found.brand)}`;
     }
-    if (current !== desiredSlug) {
+
+    if (current !== desiredSlug && decodeURIComponent(current) !== found.brand) {
       window.history.replaceState(null, '', desiredSlug);
     }
     document.title = `${found.brand} — Product Information`;
@@ -193,13 +193,12 @@ export default function App() {
               </div>
               <div className="flex-1">
                 <div className="text-[#d9c98f] text-sm">Imported And Marketed By:</div>
-                <div className="Comp text-white/90 text-sm sm:text-base font-semibold">Amba Agro Company</div>
-                <div className="text-white/90 text-sm sm:text-base">Shop No.3, Sy.No.90/1</div>
-                <div className="text-white/90 text-sm sm:text-base">Kamat Layout, Bappa Grama Post Office</div>
-                <div className="text-white/90 text-sm sm:text-base">Machohalli, Bengaluru, Bengaluru Urban</div>
-                <div className="text-white/90 text-sm sm:text-base">Karnataka - 560091</div>
-                <div className="text-white/90 text-sm sm:text-base">Phone: 9380676778</div>
-                <div className="text-white/90 text-sm sm:text-base">E-mail: ambaagro76@gmail.com</div>
+                <div className="Comp text-white/90 text-sm sm:text-base font-semibold">The Crop Care Biotech,</div>
+                <div className="text-white/90 text-sm sm:text-base">NO.21,40 Feet Road,</div>
+                <div className="text-white/90 text-sm sm:text-base">Opp. KTG College,Hegganahalli,</div>
+                <div className="text-white/90 text-sm sm:text-base">Bengaluru,Bengaluru Urban,</div>
+                <div className="text-white/90 text-sm sm:text-base">Karnataka-560091</div>
+                <div className="text-white/90 text-sm sm:text-base">Email : GVT.MPP@gmail.com</div>
               </div>
             </div>
           </StarBorder>
@@ -210,7 +209,7 @@ export default function App() {
               </div>
               <div className="flex-1">
                 <div className="text-[#d9c98f] text-sm">Customer Care</div>
-                <div className="text-white/90 text-sm sm:text-base">9380676778</div>
+                <div className="text-white/90 text-sm sm:text-base">Phone No: 9448162576</div>
               </div>
             </div>
           </StarBorder>
