@@ -114,8 +114,8 @@ export const PRODUCTS = [
     displayName: 'SAMRAKSHA-4G',
     specification: 'Sargassum tenerrimum 2%( Granular)',
     category: 'Mixed Formulation',
-    crops: ['paddy'],
-    dosage: ['One soil application at 12.5 kg/ha'],
+    crops: ['Paddy', 'Tomato'],
+    dosage: ['One soil application at 12.5 kg/ha', 'Tomato: One soil application at 12.5 kg/ha'],
     gazette: 'S.O. 3922(E), Dated 12th September, 2024',
     composition: [
       '(i) Alginic Acid per cent.by weight minimum 0.2',
