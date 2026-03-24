@@ -118,9 +118,11 @@ export const PRODUCTS = [
     dosage: ['One soil application at 12.5 kg/ha', 'Tomato: One soil application at 12.5 kg/ha'],
     gazette: 'S.O. 3922(E), Dated 12th September, 2024',
     composition: [
-      '(i) Alginic Acid per cent.by weight minimum 0.2',
-      '(ii) pH (1:2 aqueous solution) 6.0 - 8.5',
-      '(iii) Bulk density (g/cc) 0.95 – 1.1'
+      '(i) Seaweed (Sargassum tenerrimum) extract per cent. by weight, minimum 2.0',
+      '(ii) Phytase as adjuvant per cent. by weight, maximum 1.0',
+      '(iii) Bentonite per cent. by weight, maximum 87',
+      '(iv) Moisture per cent. by weight, maximum 10',
+      '(v) Total (per cent.) 100'
     ]
   }
 ];
