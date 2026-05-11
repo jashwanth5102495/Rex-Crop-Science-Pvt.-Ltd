@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Rex Crop Science</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+        .card canvas {
+            margin: 10px 0;
+        }
+        .card a {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #3498db;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            font-size: 18px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #219a52;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rex Crop Science - QR Code Generator</h1>
+    <button class="btn" onclick="downloadAllPDFs()">Download All PDFs</button>
+    <div class="grid" id="qrGrid"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const { jsPDF } = window.jspdf;
+        
+        const DOMAIN = 'https://rex-crop-science-pvt-ltd.vercel.app/';
+        const products = [
+            'R-Root', 'S-Root', 'Omega-GB', 'Super Humate', 'Zyme-R', 'Zyme-G',
+            'Humex', 'Rex-King (Humic)', 'Rex-Gold(Liquid) (Humic)', 'Rex-Gold(Liquid) (Seaweed)',
+            'Rex-King (Seaweed)', 'Rex-hero', 'Rex-Gold(L)', 'Rex-Gold', 'Rehoke-DN',
+            'Rehoke-L', 'Deeven', 'Maha-Shakti', 'Rex-Amino 20%', 'Rexofit'
+        ];
+
+        async function generateQRs() {
+            const grid = document.getElementById('qrGrid');
+            
+            for (const product of products) {
+                const url = `${DOMAIN}${encodeURIComponent(product)}`;
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `<h3>${product}</h3><canvas id="qr-${product}"></canvas><a href="${url}" target="_blank">${url}</a>`;
+                grid.appendChild(card);
+                
+                await QRCode.toCanvas(document.getElementById(`qr-${product}`), url, {
+                    errorCorrectionLevel: 'H',
+                    margin: 2,
+                    width: 180
+                });
+            }
+        }
+
+        async function downloadAllPDFs() {
+            for (const product of products) {
+                const url = `${DOMAIN}${encodeURIComponent(product)}`;
+                const canvas = document.createElement('canvas');
+                await QRCode.toCanvas(canvas, url, {
+                    errorCorrectionLevel: 'H',
+                    margin: 2,
+                    width: 300
+                });
+
+                const doc = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+
+                doc.setFontSize(24);
+                doc.text('Rex Crop Science Pvt. Ltd.', 105, 40, { align: 'center' });
+                
+                doc.setFontSize(18);
+                doc.text(product, 105, 70, { align: 'center' });
+                
+                doc.setFontSize(12);
+                doc.text('Scan QR code to view product details', 105, 95, { align: 'center' });
+
+                const imgData = canvas.toDataURL('image/png');
+                doc.addImage(imgData, 'PNG', 52.5, 110, 100, 100);
+
+                const fileName = product.replace(/[()/\\:?%*|"<>]/g, '-') + '.pdf';
+                doc.save(fileName);
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+        }
+
+        generateQRs();
+    </script>
+</body>
+</html>

@@ -29,18 +29,6 @@ export default function App() {
     document.title = `${found.brand} — Product Information`;
   }, []);
 
-  const handleProductChange = (e) => {
-    const selectedBrand = e.target.value;
-    const found = PRODUCTS.find(p => p.brand === selectedBrand);
-    if (found) {
-      setProduct(found);
-      window.history.pushState(null, '', `/${encodeURIComponent(found.brand)}`);
-      document.title = `${found.brand} — Product Information`;
-    }
-  };
-
-
-
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
       {/* Intro overlay */}
@@ -85,29 +73,6 @@ export default function App() {
           </div>
         <div className="mt-2 text-xs sm:text-sm text-white font-semibold tracking-wide">Bio‑Stimulant Registration Details</div>
       </header>
-
-      {/* Product Selector */}
-      <section className="mx-auto max-w-3xl px-4 sm:px-6">
-        <StarBorder as="div" className="w-full" color="cyan" speed="5s" thickness={2}>
-          <div className="relative rounded-2xl bg-white/8 border border-white/20 backdrop-blur-md p-4 sm:p-6 shadow-[0_20px_40px_rgba(0,0,0,0.25)]">
-            <div className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-[#e8d8a6]/20 text-[#e8d8a6] mx-auto mb-3 shadow-inner">
-              <span className="text-2xl">📦</span>
-            </div>
-            <div className="text-[#d9c98f] text-xs sm:text-sm text-center mb-2">Select Product:</div>
-            <select
-              value={product?.brand}
-              onChange={handleProductChange}
-              className="w-full bg-white/10 border border-white/30 rounded-lg px-4 py-3 text-white text-base focus:outline-none focus:ring-2 focus:ring-cyan-400"
-            >
-              {PRODUCTS.map((p) => (
-                <option key={p.brand} value={p.brand} className="bg-gray-900">
-                  {p.displayName}
-                </option>
-              ))}
-            </select>
-          </div>
-        </StarBorder>
-      </section>
 
       {/* Main panel */}
       <main className="mx-auto max-w-5xl px-4 sm:px-6 pb-16">
