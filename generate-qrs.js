@@ -44,25 +44,15 @@ for (const product of PRODUCTS) {
     doc
       .fontSize(24)
       .text('Rex Crop Science Pvt. Ltd.', { align: 'center' })
-      .moveDown();
+      .moveDown(1.5);
 
     doc
       .fontSize(18)
       .text(product.displayName, { align: 'center' })
-      .moveDown();
-
-    doc
-      .fontSize(12)
-      .text('Scan QR code to view product details', { align: 'center' })
       .moveDown(2);
 
-    const qrX = (doc.page.width - 300) / 2;
-    doc.image(qrDataUrl, qrX, doc.y, { width: 300 });
-
-    doc.moveDown(3);
-    doc
-      .fontSize(10)
-      .text(url, { align: 'center', link: url });
+    const qrX = (doc.page.width - 350) / 2;
+    doc.image(qrDataUrl, qrX, doc.y, { width: 350 });
 
     doc.end();
 

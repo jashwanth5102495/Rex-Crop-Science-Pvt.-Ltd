@@ -114,16 +114,13 @@
                 });
 
                 doc.setFontSize(24);
-                doc.text('Rex Crop Science Pvt. Ltd.', 105, 40, { align: 'center' });
+                doc.text('Rex Crop Science Pvt. Ltd.', 105, 50, { align: 'center' });
                 
                 doc.setFontSize(18);
-                doc.text(product, 105, 70, { align: 'center' });
-                
-                doc.setFontSize(12);
-                doc.text('Scan QR code to view product details', 105, 95, { align: 'center' });
+                doc.text(product, 105, 80, { align: 'center' });
 
                 const imgData = canvas.toDataURL('image/png');
-                doc.addImage(imgData, 'PNG', 52.5, 110, 100, 100);
+                doc.addImage(imgData, 'PNG', 52.5, 100, 100, 100);
 
                 const fileName = product.replace(/[()/\\:?%*|"<>]/g, '-') + '.pdf';
                 doc.save(fileName);
