@@ -135,6 +135,19 @@ export const PRODUCTS = [
   {
     brand: 'Rex-Gold(Liquid) (Humic)',
     displayName: 'Rex-Gold(Liquid)',
+    specification: 'Humic Acid Product (Liquid)',
+    category: 'Humic Acid and Fulvic Acid and their Derivatives',
+    crops: ['Multiple Crops'],
+    dosage: ['As per recommendation'],
+    gazette: 'S.O. XXXX(E), Dated XXth XXXXX, 2025',
+    composition: [
+      '(i) Active ingredients TBD',
+      '(ii) Total (per cent.) 100'
+    ]
+  },
+  {
+    brand: 'Rex-Gold(Liquid) (Seaweed)',
+    displayName: 'Rex-Gold(Liquid)',
     specification: 'Ascophyllum nodosum 15% (Liquid)',
     category: 'Seaweed Extract',
     crops: ['Green gram'],
@@ -146,19 +159,6 @@ export const PRODUCTS = [
       '(iii) Citric acid per cent. by weight, minimum 1.91',
       '(iv) Water per cent. by weight, maximum 82.81',
       '(v) Total (per cent.) 100'
-    ]
-  },
-  {
-    brand: 'Rex-Gold(Liquid) (Seaweed)',
-    displayName: 'Rex-Gold(Liquid)',
-    specification: 'Seaweed Extract Product',
-    category: 'Seaweed Extract',
-    crops: ['Multiple Crops'],
-    dosage: ['As per recommendation'],
-    gazette: 'S.O. XXXX(E), Dated XXth XXXXX, 2025',
-    composition: [
-      '(i) Active ingredients TBD',
-      '(ii) Total (per cent.) 100'
     ]
   },
   {
@@ -365,6 +365,8 @@ export const SLUG_TO_BRAND = {
   'Rex-Gold(Liquid) (Humic)': 'Rex-Gold(Liquid) (Humic)',
   'rex-gold(liquid) (humic)': 'Rex-Gold(Liquid) (Humic)',
   // Aliases for Rex-Gold(Liquid) (Seaweed)
+  'Rex-Gold(Liquid)': 'Rex-Gold(Liquid) (Seaweed)',
+  'rex-gold(liquid)': 'Rex-Gold(Liquid) (Seaweed)',
   'Rex-Gold(Liquid) (Seaweed)': 'Rex-Gold(Liquid) (Seaweed)',
   'rex-gold(liquid) (seaweed)': 'Rex-Gold(Liquid) (Seaweed)',
   // Aliases for Rex-King (Seaweed)
